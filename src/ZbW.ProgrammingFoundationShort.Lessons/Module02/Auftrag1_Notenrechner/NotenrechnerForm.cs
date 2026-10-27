@@ -26,6 +26,33 @@ public partial class NotenrechnerForm : Form
   {
     // TODO 1: Punkte aus TxtPunkte lesen (int.TryParse)
     //         Bei ungültiger Eingabe: MessageBox anzeigen und return
+    if (!int.TryParse(TxtPunkte.Text.Trim(), out int input) || input <= 0 || input > 100)
+    {
+      MessageBox.Show("Ungültige Eingabe");
+      return;
+    }
+
+    int make;
+    string rating;
+
+    if (input >= 90)
+    {
+      make = 6;
+      rating = "Sehr gut";
+    } else if (input >= 75)
+    {
+      make = 5;
+      rating = "Gut";
+    } else if (input >= 60)
+    {
+      make = 4;
+      rating = "Genügend";
+    } else
+    {
+      make = 3;
+      rating = "Ungenügend";
+    }
+
 
     // TODO 2: if/else-Kette für Noten
     //         90-100 → Note 6 / "Sehr gut"
@@ -34,5 +61,8 @@ public partial class NotenrechnerForm : Form
     //         < 60   → Note 3 / "Ungenügend"
 
     // TODO 3: LblNote.Text und LblBewertung.Text setzen
+
+    LblNote.Text = $"{make}";
+    LblBewertung.Text = rating;
   }
 }
